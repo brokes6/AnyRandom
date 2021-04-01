@@ -9,7 +9,7 @@
  ![image](https://github.com/brokes6/AnyRandom/blob/master/app/src/showImage/photo_1.jpg)<br>
  ![image](https://github.com/brokes6/AnyRandom/blob/master/app/src/showImage/photo_2.jpg)<br>
  ![image](https://github.com/brokes6/AnyRandom/blob/master/app/src/showImage/photo_3.jpg)<br>
- ###视频展示
+ ### 视频展示<br>
  ![image](https://github.com/brokes6/AnyRandom/blob/master/app/src/showImage/home.gif)<br>
  ![image](https://github.com/brokes6/AnyRandom/blob/master/app/src/showImage/add.gif)<br>
  ![image](https://github.com/brokes6/AnyRandom/blob/master/app/src/showImage/random.gif)<br>
