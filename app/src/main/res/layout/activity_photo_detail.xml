@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/mainView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+
+        <com.angcyo.tablayout.DslTabLayout
+            android:id="@+id/photoTab"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_9"
+            android:layout_marginBottom="@dimen/dp_7"
+            app:tab_deselect_color="#A1A1A1"
+            app:tab_enable_gradient_scale="true"
+            app:tab_max_scale="1.0"
+            app:tab_min_scale="0.75"
+            app:tab_select_color="@color/Black">
+
+            <TextView
+                android:id="@+id/Home_attention"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="随机结果"
+                android:textSize="@dimen/sp_24" />
+
+            <TextView
+                android:id="@+id/Home_recommended"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="随机参数"
+                android:textSize="@dimen/sp_24" />
+
+        </com.angcyo.tablayout.DslTabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/photoViewPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/photoTab" />
+
+    </RelativeLayout>
+</layout>

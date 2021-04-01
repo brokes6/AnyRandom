@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AnyRandom</string>
+    <string name="HolloText">请问今天要随机什么呢~</string>
+    <string name="startRandom">开始随机</string>
+    <string name="addCard">添加新的卡片</string>
+    <string name="randomCount">循环次数</string>
+    <string name="hint_count">这里是循环次数</string>
+    <string name="hint_introduce">这里是介绍</string>
+    <string name="hint_name">这里是名称</string>
+    <string name="hint_category">这里是类型</string>
+    <string name="cardName">卡片名称</string>
+    <string name="inputCardName">输入卡片名称</string>
+    <string name="cardTitle">卡片介绍</string>
+    <string name="inputCardTitle">输入卡片介绍</string>
+    <string name="cardCategory">卡片类型</string>
+    <string name="inputCardCategory">请输入卡片类型</string>
+    <string name="push">提交</string>
+    <string name="choiceImage">选择图片</string>
+</resources>
