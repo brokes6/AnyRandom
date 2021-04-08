@@ -8,7 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/White">
 
         <ImageView
             android:id="@+id/cardBack"
@@ -91,7 +92,7 @@
                     android:layout_above="@+id/inputRandomCount"
                     android:layout_marginStart="@dimen/dp_20"
                     android:text="@string/randomCount"
-                    android:textColor="@color/Text_gray"
+                    android:textColor="@color/Grey_9"
                     android:textSize="@dimen/sp_12" />
 
                 <EditText

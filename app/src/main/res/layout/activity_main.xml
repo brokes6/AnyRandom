@@ -27,21 +27,21 @@
                     android:layout_height="match_parent"
                     app:layout_scrollFlags="scroll|snap">
 
-                    <ImageView
-                        android:id="@+id/search"
-                        android:layout_width="@dimen/dp_24"
-                        android:layout_height="@dimen/dp_24"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/userImage"
+                        android:layout_width="@dimen/dp_34"
+                        android:layout_height="@dimen/dp_34"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="@dimen/dp_20"
                         android:layout_marginEnd="@dimen/dp_10"
                         android:layout_marginBottom="@dimen/dp_10"
-                        android:src="@drawable/ic_baseline_search" />
+                        android:src="@mipmap/userimage"/>
 
                     <TextView
                         android:id="@+id/dataTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/search"
+                        android:layout_below="@+id/userImage"
                         android:layout_marginStart="@dimen/dp_20"
                         android:layout_marginTop="@dimen/dp_40"
                         android:textColor="@color/White"

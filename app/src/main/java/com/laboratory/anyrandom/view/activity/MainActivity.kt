@@ -28,9 +28,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         ImmersionBar.with(this)
             .transparentStatusBar()
-            .transparentNavigationBar()
+//            .transparentNavigationBar()
             .statusBarDarkFont(true)
-            .titleBarMarginTop(binding.search)
+            .titleBarMarginTop(binding.userImage)
             .init()
     }
 
@@ -53,6 +53,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             val intent = Intent(this, PhotoDetailActivity::class.java)
             intent.putExtra("image", (adapter.data[position] as HomeDetailBean).cardImage)
             intent.putExtra("index", position)
+            intent.putExtra("title", (adapter.data[position] as HomeDetailBean).cardTitle)
             startActivity(intent)
         }
         binding.dataTime.text = SimpleDateFormat("EEEE").format(Date(System.currentTimeMillis()))
@@ -60,20 +61,21 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             SimpleDateFormat("MM月dd日").format(Date(System.currentTimeMillis()))
         binding.addRandomItem.setOnClickListener(this)
         binding.refreshRandom.setOnClickListener(this)
+        binding.userImage.setOnClickListener(this)
     }
 
     override fun initData() {
         viewModel.also {
             it.getData(this)
-            it.getRandomResult(this)
+            it.getRandomLastResult(this)
             it.detailData.observe(this, { itHome ->
                 adapter.setList(itHome)
             })
-            it.resultData.observe(this, { itResult ->
-                if (itResult.size == 0) {
+            it.resultLastData.observe(this, { itResult ->
+                if (itResult == null) {
                     binding.randomResult.text = "还没有运行结果哦~"
                 } else {
-                    binding.randomResult.text = "上次随机结果: ${itResult[0].randomResult} (๑•̀ㅂ•́)و✧"
+                    binding.randomResult.text = "上次随机结果: ${itResult.randomResultTitle} (๑•̀ㅂ•́)و✧"
                 }
             })
         }
@@ -87,11 +89,14 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             R.id.refreshRandom -> {
                 viewModel.getData(this)
             }
+            R.id.userImage -> {
+                startActivity(Intent(this, PersonsActivity::class.java))
+            }
         }
     }
 
     override fun onRestart() {
         super.onRestart()
-        viewModel.getRandomResult(this)
+        viewModel.getRandomLastResult(this)
     }
 }

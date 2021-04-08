@@ -16,4 +16,5 @@
     <string name="inputCardCategory">请输入卡片类型</string>
     <string name="push">提交</string>
     <string name="choiceImage">选择图片</string>
+    <string name="latery_RandomResult">最近随机结果</string>
 </resources>

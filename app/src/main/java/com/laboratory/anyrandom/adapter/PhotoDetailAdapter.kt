@@ -10,7 +10,7 @@ import com.laboratory.anyrandom.bean.RandomResultBean
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class PhotoDetailAdapter :
+class PhotoDetailAdapter(private val title: String, private val ImageUri: String) :
     BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_random) {
     private var selectedIndex: Int? = null
 
@@ -32,23 +32,30 @@ class PhotoDetailAdapter :
         holder: BaseViewHolder
     ) {
         GlobalScope.launch {
-            if (App.getDatabase(context)?.randomResultDao?.getRandomResultData()?.size == 0) {
-                App.getDatabase(context)?.randomResultDao?.insertAll(
-                    RandomResultBean(
-                        1,
-                        item,
-                        holder.adapterPosition
+            App.getDatabase(context)?.randomResultDao?.also {
+                if (it.getRandomResultData().size >= 50) {
+                    it.deleteFirstData()
+                    it.insertAll(
+                        RandomResultBean(
+                            item,
+                            holder.adapterPosition,
+                            title,
+                            ImageUri
+                        )
                     )
-                )
-            } else {
-                App.getDatabase(context)?.randomResultDao?.upData(
-                    RandomResultBean(
-                        1,
-                        item,
-                        holder.adapterPosition
+                } else {
+                    it.insertAll(
+                        RandomResultBean(
+                            item,
+                            holder.adapterPosition,
+                            title,
+                            ImageUri
+                        )
                     )
-                )
+                }
             }
+
+
         }
     }
 

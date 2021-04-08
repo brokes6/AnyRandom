@@ -45,11 +45,11 @@ class AddCardActivity : BaseActivity(), View.OnClickListener {
     override fun onCreateView(savedInstanceState: Bundle?) {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_crad)
 
-//        ImmersionBar.with(this)
-//            .transparentStatusBar()
-//            .statusBarDarkFont(true)
-//            .titleBarMarginTop(binding.HelloTitle)
-//            .init()
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.White)
+            .fitsSystemWindows(true)
+            .statusBarDarkFont(true)
+            .init()
     }
 
     override fun initView() {
@@ -183,7 +183,8 @@ class AddCardActivity : BaseActivity(), View.OnClickListener {
                     binding.inputRandomCount.text.toString().toInt(),
                     binding.inputRandomCategory.text.toString(),
                     binding.inputTitleIntroduce.text.toString(),
-                    imagePaht
+                    imagePaht,
+                    2
                 )
             )
             viewModel.getData(this@AddCardActivity)

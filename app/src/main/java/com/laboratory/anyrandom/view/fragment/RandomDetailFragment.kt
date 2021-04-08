@@ -1,6 +1,5 @@
 package com.laboratory.anyrandom.view.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +35,7 @@ class RandomDetailFragment(private val index: Int) : BaseFragment() {
     override fun initView() {
         viewModel =
             ViewModelProvider(activity as PhotoDetailActivity).get(PhotoDetailViewModel::class.java)
-        adapter = PhotoDetailAdapter()
+        adapter = PhotoDetailAdapter(viewModel.getRandomTitle()!!, viewModel.getImageUri()!!)
         layoutManager = LinearLayoutManager(context)
 
         binding.randomItem.adapter = adapter
@@ -46,9 +45,7 @@ class RandomDetailFragment(private val index: Int) : BaseFragment() {
             RecyclerViewScrollHelper.scrollToPosition(binding.randomItem, index)
             adapter.selectedIndex(index)
         }
-        binding.refreshRandom.setOnClickListener {
-            viewModel.getRandom(requireContext(), index)
-        }
+
     }
 
     override fun initData() {

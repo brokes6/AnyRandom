@@ -15,6 +15,8 @@ class PhotoDetailViewModel : ViewModel() {
     private val _randomString = MutableLiveData<List<String>>()
     val randomString: LiveData<List<String>>
         get() = _randomString
+    private var imageUri : String? = null
+    private var randomTitle : String? = null
 
     fun getRandom(context: Context, index: Int) {
         GlobalScope.launch {
@@ -43,5 +45,21 @@ class PhotoDetailViewModel : ViewModel() {
 
     fun getRandomName(): List<String>? {
         return randomName
+    }
+
+    fun setImageUri(image : String){
+        this.imageUri = image
+    }
+
+    fun getImageUri() : String?{
+        return imageUri
+    }
+
+    fun setRandomTitle(title : String){
+        this.randomTitle = title
+    }
+
+    fun getRandomTitle() : String?{
+        return randomTitle
     }
 }

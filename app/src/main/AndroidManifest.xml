@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.activity.PersonsActivity"></activity>
+        <activity android:name=".view.activity.PersonsActivity" />
         <activity android:name=".view.activity.AddCardActivity" />
         <activity android:name=".view.activity.PhotoDetailActivity" />
         <activity android:name=".view.activity.MainActivity">

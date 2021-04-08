@@ -9,34 +9,48 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.fragment.RandomDetailFragment">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/randomItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/refreshRandom"
-            android:layout_above="@+id/startRandom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/dp_15"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_rotate"
-            app:pressedTranslationZ="16dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/startRandom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/dp_30"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/dp_15"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_send"
-            app:pressedTranslationZ="16dp" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/btn_blue_selector"
+            android:text="随 机"
+            android:textColor="@color/White"
+            android:textSize="@dimen/sp_14"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_width="4dp" />
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/refreshRandom"-->
+<!--            android:layout_above="@+id/startRandom"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_margin="@dimen/dp_15"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:src="@drawable/ic_baseline_rotate"-->
+<!--            app:pressedTranslationZ="16dp" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/startRandom"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_margin="@dimen/dp_15"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:src="@drawable/ic_baseline_send"-->
+<!--            app:pressedTranslationZ="16dp" />-->
     </RelativeLayout>
 </layout>

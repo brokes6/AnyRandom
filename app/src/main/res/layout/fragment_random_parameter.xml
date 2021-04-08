@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -27,7 +28,7 @@
             android:hint="参数和参数之间要用,号隔开哦~"
             android:maxLines="1"
             android:imeOptions="actionNext"
-            android:textColor="@color/White" />
+            android:textColor="@color/Text_gray" />
 
         <TextView
             android:id="@+id/RandomCount"
@@ -48,18 +49,21 @@
             android:hint="请输入随机次数~"
             android:maxLines="1"
             android:imeOptions="actionNext"
-            android:textColor="@color/White" />
+            android:textColor="@color/Text_gray" />
 
-
-        <Button
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/Refresh"
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_130"
+            android:layout_height="@dimen/dp_40"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/dp_20"
-            android:background="@color/Red"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:background="@drawable/btn_red_selector"
             android:text="刷新数据"
-            android:textColor="@color/White" />
+            android:textColor="@color/White"
+            android:textSize="@dimen/sp_14"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="4dp" />
     </RelativeLayout>
 </layout>

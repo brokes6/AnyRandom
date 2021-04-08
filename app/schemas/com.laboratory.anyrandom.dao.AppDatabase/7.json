@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 5,
-    "identityHash": "079e7f2776d1530d876123c04cbd7db1",
+    "version": 7,
+    "identityHash": "e6fef9d090075716c88edcea4277aa7e",
     "entities": [
       {
         "tableName": "RandomBean",
@@ -94,7 +94,7 @@
       },
       {
         "tableName": "RandomResultBean",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`index` INTEGER, `randomResult` TEXT, `randomResultCount` INTEGER, PRIMARY KEY(`index`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`index` INTEGER, `randomResultTitle` TEXT, `randomResultCount` INTEGER, `randomResultIntroduce` TEXT, `randomResultClass` TEXT, PRIMARY KEY(`index`))",
         "fields": [
           {
             "fieldPath": "index",
@@ -103,8 +103,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "randomResult",
-            "columnName": "randomResult",
+            "fieldPath": "randomResultTitle",
+            "columnName": "randomResultTitle",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -112,6 +112,18 @@
             "fieldPath": "randomResultCount",
             "columnName": "randomResultCount",
             "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "randomResultIntroduce",
+            "columnName": "randomResultIntroduce",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "randomResultClass",
+            "columnName": "randomResultClass",
+            "affinity": "TEXT",
             "notNull": false
           }
         ],
@@ -160,7 +172,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '079e7f2776d1530d876123c04cbd7db1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e6fef9d090075716c88edcea4277aa7e')"
     ]
   }
 }

@@ -25,10 +25,20 @@ interface RandomResultDao {
     @Update
     fun upData(data: RandomResultBean)
 
+
+    @Query("DELETE FROM randomresultbean WHERE `index` = (SELECT MIN(`index`)FROM randomresultbean)")
+    fun deleteFirstData()
+
     /**
      * 获取所有数据
      */
     @Query("SELECT * FROM randomresultbean")
     fun getRandomResultData(): MutableList<RandomResultBean>
+
+    /**
+     * 获取最后一条数据
+     */
+    @Query("SELECT * FROM randomresultbean WHERE `index` =(SELECT MAX(`index`)FROM randomresultbean)")
+    fun getLastRandomResult() : RandomResultBean
 
 }
