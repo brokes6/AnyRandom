@@ -15,7 +15,6 @@ import com.laboratory.anyrandom.override.RecyclerViewScrollHelper
 import com.laboratory.anyrandom.view.activity.PhotoDetailActivity
 import com.laboratory.anyrandom.viewmolder.PhotoDetailViewModel
 
-
 class RandomDetailFragment(private val index: Int) : BaseFragment() {
     private lateinit var binding: FragmentRandomDetailBinding
     private lateinit var adapter: PhotoDetailAdapter

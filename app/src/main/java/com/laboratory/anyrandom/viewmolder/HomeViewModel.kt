@@ -1,12 +1,10 @@
 package com.laboratory.anyrandom.viewmolder
 
-import android.app.Activity
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.laboratory.anyrandom.App
-import com.laboratory.anyrandom.bean.DetailBean
 import com.laboratory.anyrandom.bean.HomeDetailBean
 import com.laboratory.anyrandom.bean.RandomResultBean
 import kotlinx.coroutines.GlobalScope

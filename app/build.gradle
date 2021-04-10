@@ -64,7 +64,7 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     //BaseAdapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
-    //
+    //缩放效果的LayoutManager
     implementation 'github.hellocsl:GalleryLayoutManager:1.0.6'
     // 网络请求框架
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
@@ -90,4 +90,6 @@ dependencies {
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
     //圆形图片
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Eventbus
+    implementation 'org.greenrobot:eventbus:3.2.0'
 }

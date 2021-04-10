@@ -18,6 +18,9 @@ interface RandomDao {
     @Delete
     fun deleteAll(data: RandomBean)
 
+    @Query("delete from randombean where `index`=:id")
+    fun deleteId(id: Int)
+
     /**
      *更新数据
      */

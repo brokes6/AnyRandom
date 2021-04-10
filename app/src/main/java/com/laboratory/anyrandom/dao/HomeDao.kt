@@ -18,6 +18,10 @@ interface HomeDao {
     @Delete
     fun deleteAll(data: HomeDetailBean)
 
+
+    @Query("delete from homedetailbean where cardId=:id")
+    fun deleteId(id: Int)
+
     /**
      *更新数据
      */

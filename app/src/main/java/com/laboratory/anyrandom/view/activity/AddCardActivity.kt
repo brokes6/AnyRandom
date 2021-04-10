@@ -21,12 +21,15 @@ import com.laboratory.anyrandom.R
 import com.laboratory.anyrandom.base.BaseActivity
 import com.laboratory.anyrandom.bean.HomeDetailBean
 import com.laboratory.anyrandom.databinding.ActivityAddCradBinding
+import com.laboratory.anyrandom.eventbus.MessageWrap
+import com.laboratory.anyrandom.eventbus.REFRESH
 import com.laboratory.anyrandom.override.BlurTransformation
 import com.laboratory.anyrandom.viewmolder.HomeViewModel
 import com.yalantis.ucrop.UCrop
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -62,6 +65,7 @@ class AddCardActivity : BaseActivity(), View.OnClickListener {
     override fun initData() {
         viewModel.detailData.observe(this, {
             binding.push.revertAnimation()
+            EventBus.getDefault().post(MessageWrap(REFRESH))
             Toast.makeText(this@AddCardActivity, "提交成功！", Toast.LENGTH_SHORT).show()
             finish()
         })
@@ -187,7 +191,6 @@ class AddCardActivity : BaseActivity(), View.OnClickListener {
                     2
                 )
             )
-            viewModel.getData(this@AddCardActivity)
         }
     }
 

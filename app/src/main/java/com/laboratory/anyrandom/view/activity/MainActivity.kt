@@ -11,8 +11,12 @@ import com.laboratory.anyrandom.adapter.DetailAdapter
 import com.laboratory.anyrandom.base.BaseActivity
 import com.laboratory.anyrandom.bean.HomeDetailBean
 import com.laboratory.anyrandom.databinding.ActivityMainBinding
+import com.laboratory.anyrandom.eventbus.MessageWrap
 import com.laboratory.anyrandom.viewmolder.HomeViewModel
 import github.hellocsl.layoutmanager.gallery.GalleryLayoutManager
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.abs
@@ -28,10 +32,18 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         ImmersionBar.with(this)
             .transparentStatusBar()
-//            .transparentNavigationBar()
             .statusBarDarkFont(true)
             .titleBarMarginTop(binding.userImage)
             .init()
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    fun onRefreshCard(message: MessageWrap) {
+        if (message.message == 100) {
+            viewModel.getData(this)
+        }else if (message.message == 300){
+            viewModel.getRandomLastResult(this)
+        }
     }
 
     override fun initView() {
@@ -48,23 +60,24 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         adapter = DetailAdapter().also {
             binding.viewPager.adapter = it
             it.addChildClickViewIds(R.id.image)
+            it.setOnItemChildClickListener { adapter, _, position ->
+                val intent = Intent(this, PhotoDetailActivity::class.java)
+                intent.putExtra("image", (adapter.data[position] as HomeDetailBean).cardImage)
+                intent.putExtra("index", position)
+                intent.putExtra("title", (adapter.data[position] as HomeDetailBean).cardTitle)
+                startActivity(intent)
+            }
         }
-        adapter.setOnItemChildClickListener { adapter, _, position ->
-            val intent = Intent(this, PhotoDetailActivity::class.java)
-            intent.putExtra("image", (adapter.data[position] as HomeDetailBean).cardImage)
-            intent.putExtra("index", position)
-            intent.putExtra("title", (adapter.data[position] as HomeDetailBean).cardTitle)
-            startActivity(intent)
-        }
-        binding.dataTime.text = SimpleDateFormat("EEEE").format(Date(System.currentTimeMillis()))
-        binding.dataTimeDetail.text =
-            SimpleDateFormat("MM月dd日").format(Date(System.currentTimeMillis()))
+        EventBus.getDefault().register(this)
         binding.addRandomItem.setOnClickListener(this)
-        binding.refreshRandom.setOnClickListener(this)
         binding.userImage.setOnClickListener(this)
     }
 
     override fun initData() {
+        binding.dataTime.text = SimpleDateFormat("EEEE").format(Date(System.currentTimeMillis()))
+        binding.dataTimeDetail.text =
+            SimpleDateFormat("MM月dd日").format(Date(System.currentTimeMillis()))
+
         viewModel.also {
             it.getData(this)
             it.getRandomLastResult(this)
@@ -86,17 +99,15 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             R.id.addRandomItem -> {
                 startActivity(Intent(this, AddCardActivity::class.java))
             }
-            R.id.refreshRandom -> {
-                viewModel.getData(this)
-            }
             R.id.userImage -> {
                 startActivity(Intent(this, PersonsActivity::class.java))
             }
         }
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        viewModel.getRandomLastResult(this)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }

@@ -1,7 +1,9 @@
 package com.laboratory.anyrandom.base
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gyf.immersionbar.ImmersionBar
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -14,6 +16,13 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onCreateView(savedInstanceState)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            ImmersionBar.with(this)
+                .transparentNavigationBar()
+                .init()
+        }
+
         initView()
         initData()
     }

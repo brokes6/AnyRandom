@@ -1,13 +1,9 @@
 package com.laboratory.anyrandom
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.os.Bundle
 import androidx.room.Room
-import com.laboratory.anyrandom.base.IActivity
 import com.laboratory.anyrandom.dao.AppDatabase
-import com.yalantis.ucrop.UCropActivity
 
 class App : Application() {
 
