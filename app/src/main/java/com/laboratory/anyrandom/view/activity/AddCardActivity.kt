@@ -191,6 +191,7 @@ class AddCardActivity : BaseActivity(), View.OnClickListener {
                     2
                 )
             )
+            viewModel.getData(this@AddCardActivity)
         }
     }
 
