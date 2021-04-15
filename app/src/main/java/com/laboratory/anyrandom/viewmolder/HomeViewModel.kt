@@ -15,8 +15,8 @@ class HomeViewModel : ViewModel() {
     val detailData: LiveData<MutableList<HomeDetailBean>>
         get() = _detailData
 
-    val resultLastData : MutableLiveData<RandomResultBean> = MutableLiveData()
-    val resultData : MutableLiveData<MutableList<RandomResultBean>> = MutableLiveData()
+    val resultLastData: MutableLiveData<RandomResultBean> = MutableLiveData()
+    val resultData: MutableLiveData<MutableList<RandomResultBean>> = MutableLiveData()
 
     fun getData(context: Context) {
         GlobalScope.launch {
@@ -24,13 +24,13 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun getRandomLastResult(context: Context){
+    fun getRandomLastResult(context: Context) {
         GlobalScope.launch {
             resultLastData.postValue(App.getDatabase(context)?.randomResultDao?.getLastRandomResult())
         }
     }
 
-    fun getRandomResult(context: Context){
+    fun getRandomResult(context: Context) {
         GlobalScope.launch {
             resultData.postValue(App.getDatabase(context)?.randomResultDao?.getRandomResultData())
         }

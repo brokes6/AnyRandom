@@ -2,7 +2,6 @@ package com.laboratory.anyrandom.adapter
 
 
 import android.graphics.BitmapFactory
-import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -11,11 +10,11 @@ import com.laboratory.anyrandom.R
 import com.laboratory.anyrandom.bean.HomeDetailBean
 import com.laboratory.anyrandom.override.BlurTransformation
 
-
 class DetailAdapter :
     BaseQuickAdapter<HomeDetailBean, BaseViewHolder>(R.layout.item_viewpager) {
 
     override fun convert(holder: BaseViewHolder, item: HomeDetailBean) {
+
         Glide.with(holder.itemView)
             .load(BitmapFactory.decodeFile(item.cardImage))
             .apply(RequestOptions.bitmapTransform(BlurTransformation(25, 20)))

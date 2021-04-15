@@ -1,171 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
 
-    </data>
+    <ImageView
+        android:id="@+id/cardBack"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:layout_margin="@dimen/dp_10"
+        android:src="@drawable/ic_baseline_arrow_back" />
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/HelloTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dp_10"
+        android:text="@string/addCard"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/sp_22" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/showCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/White">
+        android:layout_height="@dimen/dp_400"
+        android:layout_below="@+id/HelloTitle"
+        android:layout_margin="@dimen/dp_10"
+        android:clickable="true"
+        android:elevation="@dimen/dp_10"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/dp_10">
 
-        <ImageView
-            android:id="@+id/cardBack"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_margin="@dimen/dp_10"
-            android:src="@drawable/ic_baseline_arrow_back" />
-
-        <TextView
-            android:id="@+id/HelloTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/dp_10"
-            android:text="@string/addCard"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/sp_22" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/showCard"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_400"
-            android:layout_below="@+id/HelloTitle"
-            android:layout_margin="@dimen/dp_10"
-            android:clickable="true"
-            android:elevation="@dimen/dp_10"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="@dimen/dp_10">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:transitionName="mainPhoto" />
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:transitionName="mainPhoto" />
+            <EditText
+                android:id="@+id/inputRandomCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_15"
+                android:background="@null"
+                android:hint="@string/hint_category"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="@dimen/sp_14" />
 
-                <EditText
-                    android:id="@+id/inputRandomCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_15"
-                    android:background="@null"
-                    android:hint="@string/hint_category"
-                    android:imeOptions="actionDone"
-                    android:singleLine="true"
-                    android:textColor="@color/Black"
-                    android:textColorHint="@color/Black"
-                    android:textSize="@dimen/sp_14" />
+            <EditText
+                android:id="@+id/inputRandomName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/inputRandomCategory"
+                android:layout_marginStart="@dimen/dp_15"
+                android:background="@null"
+                android:hint="@string/hint_name"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/Black"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/inputRandomName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/inputRandomCategory"
-                    android:layout_marginStart="@dimen/dp_15"
-                    android:background="@null"
-                    android:hint="@string/hint_name"
-                    android:imeOptions="actionDone"
-                    android:singleLine="true"
-                    android:textColor="@color/Black"
-                    android:textColorHint="@color/Black"
-                    android:textSize="@dimen/sp_20"
-                    android:textStyle="bold" />
+            <View
+                android:id="@+id/Occlusion"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/file_transparent_black_gradient" />
 
-                <View
-                    android:id="@+id/Occlusion"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_200"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/file_transparent_black_gradient" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/inputRandomCount"
+                android:layout_marginStart="@dimen/dp_20"
+                android:text="@string/randomCount"
+                android:textColor="@color/Grey_9"
+                android:textSize="@dimen/sp_12" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/inputRandomCount"
-                    android:layout_marginStart="@dimen/dp_20"
-                    android:text="@string/randomCount"
-                    android:textColor="@color/Grey_9"
-                    android:textSize="@dimen/sp_12" />
+            <EditText
+                android:id="@+id/inputRandomCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/inputTitleIntroduce"
+                android:layout_marginStart="@dimen/dp_20"
+                android:background="@null"
+                android:hint="@string/hint_count"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"
+                android:textSize="@dimen/sp_14" />
 
-                <EditText
-                    android:id="@+id/inputRandomCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/inputTitleIntroduce"
-                    android:layout_marginStart="@dimen/dp_20"
-                    android:background="@null"
-                    android:hint="@string/hint_count"
-                    android:imeOptions="actionDone"
-                    android:singleLine="true"
-                    android:textColor="@color/White"
-                    android:textColorHint="@color/White"
-                    android:textSize="@dimen/sp_14" />
+            <EditText
+                android:id="@+id/inputTitleIntroduce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/dp_20"
+                android:background="@null"
+                android:hint="@string/hint_introduce"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textColor="@color/White"
+                android:textColorHint="@color/White"
+                android:textSize="@dimen/sp_16" />
 
-                <EditText
-                    android:id="@+id/inputTitleIntroduce"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/dp_20"
-                    android:background="@null"
-                    android:hint="@string/hint_introduce"
-                    android:imeOptions="actionDone"
-                    android:singleLine="true"
-                    android:textColor="@color/White"
-                    android:textColorHint="@color/White"
-                    android:textSize="@dimen/sp_16" />
-
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
-        <Button
-            android:id="@+id/choiceImage"
-            android:layout_width="@dimen/dp_130"
-            android:layout_height="@dimen/dp_50"
-            android:layout_below="@+id/showCard"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_20"
-            android:layout_marginEnd="@dimen/dp_10"
-            android:background="@drawable/btn_bg_pressed"
-            android:text="@string/choiceImage"
-            android:textSize="@dimen/sp_14" />
+    <Button
+        android:id="@+id/choiceImage"
+        android:layout_width="@dimen/dp_130"
+        android:layout_height="@dimen/dp_50"
+        android:layout_below="@+id/showCard"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:background="@drawable/btn_bg_pressed"
+        android:text="@string/choiceImage"
+        android:textSize="@dimen/sp_14" />
 
-        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-            android:id="@+id/push"
-            android:layout_width="@dimen/dp_130"
-            android:layout_height="@dimen/dp_50"
-            android:layout_below="@+id/choiceImage"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/btn_red_selector"
-            android:text="@string/push"
-            android:textColor="@color/White"
-            android:textSize="@dimen/sp_14"
-            app:spinning_bar_color="#FFF"
-            app:spinning_bar_padding="6dp"
-            app:spinning_bar_width="4dp" />
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+        android:id="@+id/push"
+        android:layout_width="@dimen/dp_130"
+        android:layout_height="@dimen/dp_50"
+        android:layout_below="@+id/choiceImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/btn_red_selector"
+        android:text="@string/push"
+        android:textColor="@color/White"
+        android:textSize="@dimen/sp_14"
+        app:spinning_bar_color="#FFF"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp" />
 
-        <!--        <Button-->
-        <!--            android:id="@+id/push"-->
-        <!--            android:layout_width="@dimen/dp_130"-->
-        <!--            android:layout_height="@dimen/dp_50"-->
-        <!--            android:layout_below="@+id/showCard"-->
-        <!--            android:layout_marginStart="@dimen/dp_10"-->
-        <!--            android:layout_marginTop="@dimen/dp_20"-->
-        <!--            android:layout_toEndOf="@+id/other"-->
-        <!--            android:background="@drawable/btn_red_selector"-->
-        <!--            android:text="提交"-->
-        <!--            android:textColor="@color/White" />-->
-
-
-    </RelativeLayout>
-</layout>
+</RelativeLayout>

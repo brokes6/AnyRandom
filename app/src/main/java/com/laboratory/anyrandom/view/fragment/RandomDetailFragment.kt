@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.laboratory.anyrandom.R
 import com.laboratory.anyrandom.adapter.PhotoDetailAdapter
 import com.laboratory.anyrandom.base.BaseFragment
 import com.laboratory.anyrandom.databinding.FragmentRandomDetailBinding
@@ -26,8 +24,7 @@ class RandomDetailFragment(private val index: Int) : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_random_detail, container, false)
+        binding = FragmentRandomDetailBinding.inflate(layoutInflater)
         return binding.root
     }
 

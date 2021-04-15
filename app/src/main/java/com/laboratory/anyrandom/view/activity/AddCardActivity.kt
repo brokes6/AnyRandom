@@ -11,7 +11,6 @@ import android.os.Environment
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -46,7 +45,8 @@ class AddCardActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onCreateView(savedInstanceState: Bundle?) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_crad)
+        binding = ActivityAddCradBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         ImmersionBar.with(this)
             .statusBarColor(R.color.White)

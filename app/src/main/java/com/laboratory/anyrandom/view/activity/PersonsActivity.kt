@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gyf.immersionbar.ImmersionBar
@@ -29,7 +28,8 @@ class PersonsActivity : BaseActivity(), View.OnClickListener {
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(savedInstanceState: Bundle?) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_persons)
+        binding = ActivityPersonsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         ImmersionBar.with(this)
             .statusBarColor(R.color.White)
@@ -66,7 +66,7 @@ class PersonsActivity : BaseActivity(), View.OnClickListener {
                 }
             }
             it.setOnItemChildLongClickListener { _, _, position ->
-                ChooseDialog(this, position, viewModel).also { dialog ->
+                ChooseDialog(this).also { dialog ->
                     dialog.setDialogOnClickListener(object : OnDialogItemClickListener {
                         override fun itemClick() {
                             GlobalScope.launch {

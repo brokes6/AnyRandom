@@ -7,9 +7,8 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.laboratory.anyrandom.R
 import com.laboratory.anyrandom.bean.HomeDetailBean
 import com.laboratory.anyrandom.override.BlurTransformation
-
-const val ADD: Int = 1
-const val NORMAL: Int = 2
+import com.laboratory.anyrandom.util.ADD
+import com.laboratory.anyrandom.util.NORMAL
 
 class PersonsRandomAdapter :
     BaseMultiItemQuickAdapter<HomeDetailBean, BaseViewHolder>() {
@@ -26,7 +25,7 @@ class PersonsRandomAdapter :
             }
             NORMAL -> {
                 //holder.setText(R.id.cardRandomTitle, item.cardIntroduce)
-                holder.setText(R.id.cardRandomResult,item.cardTitle)
+                holder.setText(R.id.cardRandomResult, item.cardTitle)
                 holder.setText(R.id.cardRandomCount, "循环${item.cardRandomCount.toString()}次")
                 holder.setText(R.id.cardRandomClass, item.cardType)
                 Glide.with(holder.itemView).load(item.cardImage)

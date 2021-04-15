@@ -6,14 +6,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.TextView
-import android.widget.Toast
-import com.laboratory.anyrandom.App
 import com.laboratory.anyrandom.R
-import com.laboratory.anyrandom.viewmolder.HomeViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
-class ChooseDialog(context: Context, index: Int,viewModel : HomeViewModel) : Dialog(context, R.style.dialog) {
+class ChooseDialog(context: Context) : Dialog(context, R.style.dialog) {
     private lateinit var onDialogItemClickListener: OnDialogItemClickListener
 
     init {
@@ -34,7 +29,6 @@ class ChooseDialog(context: Context, index: Int,viewModel : HomeViewModel) : Dia
         val lp = dialogWindow.attributes
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT
         //设置弹窗宽度
-        //设置弹窗宽度
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT
         dialogWindow.attributes = lp
     }
@@ -44,6 +38,7 @@ class ChooseDialog(context: Context, index: Int,viewModel : HomeViewModel) : Dia
     }
 
 }
+
 interface OnDialogItemClickListener {
     fun itemClick()
 }

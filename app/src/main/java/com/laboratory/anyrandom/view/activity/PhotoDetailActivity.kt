@@ -2,13 +2,11 @@ package com.laboratory.anyrandom.view.activity
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.angcyo.tablayout.delegate.ViewPager1Delegate
 import com.bumptech.glide.Glide
 import com.gyf.immersionbar.ImmersionBar
-import com.laboratory.anyrandom.R
 import com.laboratory.anyrandom.adapter.HomeTitleAdapter
 import com.laboratory.anyrandom.base.BaseActivity
 import com.laboratory.anyrandom.databinding.ActivityPhotoDetailBinding
@@ -22,7 +20,8 @@ class PhotoDetailActivity : BaseActivity() {
     private lateinit var viewModel: PhotoDetailViewModel
 
     override fun onCreateView(savedInstanceState: Bundle?) {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_photo_detail)
+        binding = ActivityPhotoDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         ImmersionBar.with(this)
             .transparentStatusBar()

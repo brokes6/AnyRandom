@@ -1,5 +1,6 @@
 package com.laboratory.anyrandom
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
@@ -9,6 +10,9 @@ class App : Application() {
 
     companion object {
         private var db: AppDatabase? = null
+
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context // 注入懒加载 全局 context
 
         fun getDatabase(context: Context): AppDatabase? {
             if (db == null) {
@@ -29,6 +33,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        context = applicationContext
 //        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
 //            override fun onActivityCreated(activity: Activity, p1: Bundle?) {
 //                (activity as IActivity).initView()

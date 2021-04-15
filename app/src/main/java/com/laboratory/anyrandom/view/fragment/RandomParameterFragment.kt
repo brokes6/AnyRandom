@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.laboratory.anyrandom.App
 import com.laboratory.anyrandom.R
@@ -14,6 +13,7 @@ import com.laboratory.anyrandom.bean.RandomBean
 import com.laboratory.anyrandom.databinding.FragmentRandomParameterBinding
 import com.laboratory.anyrandom.view.activity.PhotoDetailActivity
 import com.laboratory.anyrandom.viewmolder.PhotoDetailViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -27,8 +27,7 @@ class RandomParameterFragment(private val index: Int) : BaseFragment(), View.OnC
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_random_parameter, container, false)
+        binding = FragmentRandomParameterBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -39,7 +38,18 @@ class RandomParameterFragment(private val index: Int) : BaseFragment(), View.OnC
     }
 
     override fun initData() {
+        GlobalScope.launch {
+            App.getDatabase(requireContext())?.randomDao?.getRandomData(index).also {
+                if (it?.size == 0){
 
+                }else{
+                    GlobalScope.launch(Dispatchers.Main){
+                        binding.randomText.text = "当前随机参数为:${it?.get(0)?.randomName}"
+                        binding.randomCountLast.text = "随机次数为:${it?.get(0)?.randomNum}"
+                    }
+                }
+            }
+        }
     }
 
     override fun onClick(p0: View?) {
@@ -50,14 +60,12 @@ class RandomParameterFragment(private val index: Int) : BaseFragment(), View.OnC
                     binding.RandomCountInput.text.toString().trim().isNotEmpty()
                 ) {
                     GlobalScope.launch {
-                        App.getDatabase(requireContext())?.randomDao?.insertAll(
-                            RandomBean(
-                                index,
-                                binding.RandomNameInput.text.toString(),
-                                binding.RandomCountInput.text.toString().toInt()
-                            )
+                        viewModel.insertUP(
+                            requireContext(),
+                            index,
+                            binding.RandomNameInput.text.toString(),
+                            binding.RandomCountInput.text.toString().toInt()
                         )
-                        viewModel.getRandom(requireContext(), index)
                     }
                     Toast.makeText(context, "刷新成功！", Toast.LENGTH_SHORT).show()
                 } else {
@@ -66,6 +74,4 @@ class RandomParameterFragment(private val index: Int) : BaseFragment(), View.OnC
             }
         }
     }
-
-
 }

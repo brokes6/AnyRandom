@@ -8,9 +8,14 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
-    dataBinding {
-        enabled true
+    buildFeatures{
+        viewBinding = true
     }
+
+//    lintOptions {
+//        checkReleaseBuilds false
+//        abortOnError false
+//    }
 
     defaultConfig {
         applicationId "com.laboratory.anyrandom"
