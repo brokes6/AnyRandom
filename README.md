@@ -1,4 +1,7 @@
 # AnyRandom
+[![](https://img.shields.io/badge/个人博客-Android笔记-green.svg)](https://brokes6.github.io)<br>
+博客里面记录了很多详细的笔记（可以去看看哦~）
+
 ## 这是一款完全本地的 随机选择 软件
 ### 特点<br>
   1.整体使用了MVVM来进行开发<br>
