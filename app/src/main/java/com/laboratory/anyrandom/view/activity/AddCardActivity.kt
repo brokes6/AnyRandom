@@ -38,7 +38,7 @@ import java.io.IOException
 class AddCardActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityAddCradBinding
     private lateinit var viewModel: HomeViewModel
-    private var bitmap: Bitmap? = null
+    private lateinit var bitmap: Bitmap
 
     companion object {
         private const val REQUEST_CODE_ALBUM = 1001 //相册
@@ -173,7 +173,7 @@ class AddCardActivity : BaseActivity(), View.OnClickListener {
             .start(this)
     }
 
-    private fun getDestinationUri(): Uri {
+    private fun getDestinationUri(): Uri{
         val fileName = String.format("fr_crop_%s.jpg", System.currentTimeMillis())
         val cropFile = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), fileName)
         return Uri.fromFile(cropFile)

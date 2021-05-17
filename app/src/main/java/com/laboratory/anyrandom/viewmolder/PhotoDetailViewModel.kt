@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.laboratory.anyrandom.App
 import com.laboratory.anyrandom.bean.RandomBean
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 class PhotoDetailViewModel : ViewModel() {
@@ -18,16 +19,12 @@ class PhotoDetailViewModel : ViewModel() {
     private var imageUri: String? = null
     private var randomTitle: String? = null
 
+    @ExperimentalCoroutinesApi
     fun getRandom(context: Context, index: Int) {
-        GlobalScope.launch {
+        viewModelScope.launch {
             if (App.getDatabase(context)?.randomDao?.getRandomData(index)?.size!! <= 0) return@launch
-            randomName =
-                App.getDatabase(context)?.randomDao?.getRandomData(index)
-                    ?.get(0)?.randomName?.split(
-                        ","
-                    )
-            randomCount =
-                App.getDatabase(context)?.randomDao?.getRandomData(index)?.get(0)?.randomNum!!
+            randomName = getRandomNameData(context, index)
+            randomCount = getRandomCountData(context, index)
             val stringList: ArrayList<String> = arrayListOf()
             for (name in 1..randomCount) {
                 stringList.add(randomName!![(randomName!!.indices).random()])
@@ -36,8 +33,19 @@ class PhotoDetailViewModel : ViewModel() {
         }
     }
 
+    private suspend fun getRandomNameData(context: Context, index: Int): List<String>? {
+        return App.getDatabase(context)?.randomDao?.getRandomData(index)
+            ?.get(0)?.randomName?.split(
+                ","
+            )
+    }
+
+    private suspend fun getRandomCountData(context: Context, index: Int): Int {
+        return App.getDatabase(context)?.randomDao?.getRandomData(index)?.get(0)?.randomNum!!
+    }
+
     fun insertUP(context: Context, index: Int, numText: String, countText: Int) {
-        GlobalScope.launch {
+        viewModelScope.launch {
             App.getDatabase(context)?.randomDao?.getRandomData(index).let {
                 if (it?.size == 0) {
                     App.getDatabase(context)?.randomDao?.insertAll(

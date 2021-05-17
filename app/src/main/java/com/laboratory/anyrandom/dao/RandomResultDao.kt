@@ -25,6 +25,9 @@ interface RandomResultDao {
     @Update
     fun upData(data: RandomResultBean)
 
+    /**
+     * 删除下标最小的那列
+     */
     @Query("DELETE FROM randomresultbean WHERE `index` = (SELECT MIN(`index`)FROM randomresultbean)")
     fun deleteFirstData()
 

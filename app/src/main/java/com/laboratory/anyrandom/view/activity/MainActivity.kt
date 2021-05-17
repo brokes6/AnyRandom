@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.gyf.immersionbar.ImmersionBar
 import com.laboratory.anyrandom.R
 import com.laboratory.anyrandom.adapter.HomeAdapter
@@ -15,6 +16,7 @@ import com.laboratory.anyrandom.eventbus.MessageWrap
 import com.laboratory.anyrandom.util.FoyouLibrary
 import com.laboratory.anyrandom.viewmolder.HomeViewModel
 import github.hellocsl.layoutmanager.gallery.GalleryLayoutManager
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -42,9 +44,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.POSTING)
     fun onRefreshCard(message: MessageWrap) {
         if (message.message == 100) {
-            viewModel.getData(this)
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.getData(this@MainActivity)
+            }
         } else if (message.message == 300) {
-            viewModel.getRandomLastResult(this)
+            lifecycleScope.launch(Dispatchers.IO) {
+                viewModel.getRandomLastResult(this@MainActivity)
+            }
         }
     }
 
@@ -93,16 +99,18 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         binding.dataTime.text = SimpleDateFormat("EEEE").format(Date(System.currentTimeMillis()))
         binding.dataTimeDetail.text =
             SimpleDateFormat("MM月dd日").format(Date(System.currentTimeMillis()))
-        viewModel.also {
-            it.getData(this)
-            it.getRandomLastResult(this)
-            it.detailData.observe(this, { itHome ->
+        lifecycleScope.launch {
+            async(Dispatchers.IO) {
+                viewModel.getData(this@MainActivity)
+                viewModel.getRandomLastResult(this@MainActivity)
+            }
+            viewModel.detailData.observe(this@MainActivity, { itHome ->
                 FoyouLibrary.getSentence().let { data ->
                     itHome.add(HomeDetailBean(data.text, data.author, data.source, 100))
                 }
                 adapter.setData(itHome)
             })
-            it.resultLastData.observe(this, { itResult ->
+            viewModel.resultLastData.observe(this@MainActivity, { itResult ->
                 if (itResult == null) {
                     binding.randomResult.text = "还没有运行结果哦~"
                 } else {
