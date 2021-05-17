@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gyf.immersionbar.ImmersionBar
 import com.laboratory.anyrandom.App
@@ -19,8 +20,7 @@ import com.laboratory.anyrandom.eventbus.REFRESH
 import com.laboratory.anyrandom.view.fragment.ChooseDialog
 import com.laboratory.anyrandom.view.fragment.OnDialogItemClickListener
 import com.laboratory.anyrandom.viewmolder.HomeViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.EventBus
 
 class PersonsActivity : BaseActivity(), View.OnClickListener {
@@ -69,7 +69,7 @@ class PersonsActivity : BaseActivity(), View.OnClickListener {
                 ChooseDialog(this).also { dialog ->
                     dialog.setDialogOnClickListener(object : OnDialogItemClickListener {
                         override fun itemClick() {
-                            GlobalScope.launch {
+                            lifecycleScope.launch {
                                 App.getDatabase(this@PersonsActivity)?.homeDao?.deleteId(position)
                                 App.getDatabase(this@PersonsActivity)?.randomDao?.deleteId(position - 1)
                                 viewModel.getData(this@PersonsActivity)
@@ -103,8 +103,12 @@ class PersonsActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun initData() {
-        viewModel.getData(this)
-        viewModel.getRandomResult(this)
+        lifecycleScope.launch {
+            async(Dispatchers.IO) {
+                viewModel.getData(this@PersonsActivity)
+                viewModel.getRandomResult(this@PersonsActivity)
+            }
+        }
     }
 
     override fun onClick(p0: View?) {

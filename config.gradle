@@ -1,0 +1,51 @@
+ext {
+    applicationId = "com.laboratory.anyrandom"
+    compileSdkVersion = 30
+    buildToolsVersion = "30.0.2"
+    minSdkVersion = 23
+    targetSdkVersion = 30
+    versionCode = 1
+    versionName = "1.0"
+
+    dependencies = [
+            //Glide
+            "Glide"                          : 'com.github.bumptech.glide:okhttp3-integration:4.11.0',
+            "Glide-wearable"                 : 'com.google.android.wearable:wearable:2.6.0',
+            //需要kapt
+            "Glide-compiler"                 : 'com.github.bumptech.glide:compiler:4.11.0',
+            //Glide第三方模糊
+            "Glide-transformations"          : 'jp.wasabeef:glide-transformations:2.0.1',
+            //BaseAdapter
+            "BaseAdapter"                    : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4',
+            //缩放效果的LayoutManager
+            "GalleryLayoutManager"           : 'github.hellocsl:GalleryLayoutManager:1.0.6',
+            "Okhttp"                         : 'com.squareup.okhttp3:okhttp:4.7.2',
+            //协程
+            "Kotlinx-coroutines"             : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7',
+            //生命周期监听
+            "Fragment"                       : 'androidx.fragment:fragment-ktx:1.2.5',
+            "Viewmodel"                      : 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-rc01',
+            //Room
+            "Room-runtime"                   : 'androidx.room:room-runtime:2.2.5',
+            "Room-ktx"                       : 'androidx.room:room-ktx:2.2.5',
+            //需要kapt
+            "Room-compiler"                  : 'androidx.room:room-compiler:2.2.5',
+            //Tab
+            "DslTablayout"                   : 'com.github.angcyo.DslTablayout:TabLayout:2.0.1',
+            "DslTablayout-ViewPager1Delegate": 'com.github.angcyo.DslTablayout:ViewPager1Delegate:1.4.2',
+            //状态栏沉浸
+            "Immersionbar"                   : 'com.gyf.immersionbar:immersionbar:3.0.0',
+            "Immersionbar-ktx"               : 'com.gyf.immersionbar:immersionbar-ktx:3.0.0',
+            //图片裁剪
+            "Ucrop"                          : 'com.github.yalantis:ucrop:2.2.6',
+            //动画Button
+            "Button"                         : 'br.com.simplepass:loading-button-android:2.2.0',
+            //圆形图片
+            "Circleimageview"                : 'de.hdodenhof:circleimageview:3.1.0',
+            //事件
+            "Eventbus"                       : 'org.greenrobot:eventbus:3.2.0',
+            //阿里路由
+            "ARouter"                        : 'com.alibaba:arouter-api:1.5.1',
+            "Arouter-compiler"               : 'com.alibaba:arouter-compiler:1.5.1'
+    ]
+}

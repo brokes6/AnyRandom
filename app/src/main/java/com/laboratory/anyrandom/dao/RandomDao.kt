@@ -10,26 +10,26 @@ interface RandomDao {
      * 插入数据
      */
     @Insert
-    fun insertAll(data : RandomBean)
+    suspend fun insertAll(data : RandomBean)
 
     /**
      * 删除数据
      */
     @Delete
-    fun deleteAll(data: RandomBean)
+    suspend fun deleteAll(data: RandomBean)
 
     @Query("delete from randombean where `index`=:id")
-    fun deleteId(id: Int)
+    suspend fun deleteId(id: Int)
 
     /**
      *更新数据
      */
     @Update
-    fun upData(data: RandomBean)
+    suspend fun upData(data: RandomBean)
 
     /**
-     * 获取所有数据
+     * 获取指定ID的所有数据
      */
     @Query("SELECT * FROM randombean WHERE `index` = :value")
-    fun getRandomData(value : Int): MutableList<RandomBean>
+    suspend fun getRandomData(value : Int): MutableList<RandomBean>
 }

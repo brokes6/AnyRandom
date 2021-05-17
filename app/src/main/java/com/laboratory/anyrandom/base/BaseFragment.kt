@@ -28,10 +28,14 @@ abstract class BaseFragment : Fragment() {
     ): View? {
         if (mView == null) {
             mView = createView(inflater, container, savedInstanceState)
-            initView()
-            initData()
         }
         return mView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initView()
+        initData()
     }
 
 //    override fun onResume() {
@@ -44,7 +48,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        isFirstLoad = true
+//        isFirstLoad = true
     }
 
 }
